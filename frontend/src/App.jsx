@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Box, Button, HStack, IconButton, useColorMode } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
@@ -22,12 +23,14 @@ const App = () => {
     <RedirectWrapper>
       <Box textAlign="center" mt={5} p={4}>
         <HStack justify="center" spacing={4} mb={6}>
+        <Button as={Link} to="/">Home</Button>
           <Button as={Link} to="/login">Login</Button>
           <Button as={Link} to="/create">Register</Button>
           <IconButton icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />} onClick={toggleColorMode} />
         </HStack>
         <Routes>
           {/* Public Routes */}
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create" element={<Register />} />
 
