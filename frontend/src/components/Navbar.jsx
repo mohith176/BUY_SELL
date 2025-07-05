@@ -16,6 +16,9 @@ const Navbar = () => {
         <Button as={Link} to="/profile" colorScheme="teal">
           Profile
         </Button>
+        <Button as={Link} to="/sell" colorScheme="teal">
+          Sell Item
+        </Button>
         <Button as={Link} to="/cart" colorScheme="teal">
           My Cart
         </Button>

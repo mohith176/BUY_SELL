@@ -9,6 +9,7 @@ import MyCart from "./pages/MyCart";
 import DeliverItems from "./pages/DeliverItems";
 import History from "./pages/History";
 import SearchItems from "./pages/SearchItems";
+import SellItem from "./pages/SellItem";
 import RedirectWrapper from "./RedirectWrapper";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ItemDetails from "./pages/ItemDetails";
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/deliver" element={<ProtectedRoute><DeliverItems /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
           <Route path="/search" element={<ProtectedRoute><SearchItems /></ProtectedRoute>} />
+          <Route path="/sell" element={<ProtectedRoute><SellItem /></ProtectedRoute>} />
           <Route path="/items/:id" element={<ProtectedRoute><ItemDetails /></ProtectedRoute>} />
         </Routes>
       </Box>

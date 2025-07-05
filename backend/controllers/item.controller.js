@@ -13,14 +13,43 @@ export const getAllItems = async (req, res) => {
 
 
 // Create a new item
+// export const createItem = async (req, res) => {
+//     const item = new Item(req.body);
+//     try {
+//         const newItem = await item.save();
+//         res.status(201).json(newItem);
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
+
 export const createItem = async (req, res) => {
-    const item = new Item(req.body);
-    try {
-        const newItem = await item.save();
-        res.status(201).json(newItem);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+  try {
+      const { name, price, description, category } = req.body;
+      
+      // Check if all required fields are provided
+      if (!name || !price || !description || !category) {
+          return res.status(400).json({ message: "Please provide all fields" });
+      }
+
+      // Create item with sellerId from authenticated user
+      const item = new Item({
+          name,
+          price,
+          description,
+          category,
+          sellerId: req.user._id
+      });
+
+      const newItem = await item.save();
+      
+      // Populate seller information before sending response
+      await newItem.populate('sellerId', 'firstName lastName');
+      
+      res.status(201).json(newItem);
+  } catch (error) {
+      res.status(400).json({ message: error.message });
+  }
 };
 
 
